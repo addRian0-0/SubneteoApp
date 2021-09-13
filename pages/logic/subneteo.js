@@ -1,13 +1,13 @@
 export const calcularRedes = (numRedes, oct1) => {
 
     let n = 0;
-    let redes = 0;
+    let redesL = 0;
     let wclase = '';
 
-    while (redes <= numRedes) {
+    while (redesL <= numRedes) {
         n += 1;
-        redes = Math.pow(2, n);
-        if (redes >= numRedes) {
+        redesL = Math.pow(2, n);
+        if (redesL >= numRedes) {
             break;
         }
     }
@@ -60,7 +60,7 @@ export const calcularRedes = (numRedes, oct1) => {
     console.log(`Las redes de resolucion son: ${redes}`)
     console.log(`Red de la clase: ${wclase}`) */
 
-    return { wclase, n, binText, bitTotales, salto, hosts };
+    return { wclase, n, binText, bitTotales, salto, hosts, redesL };
 
 }
 

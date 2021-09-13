@@ -53,7 +53,7 @@ export default function Home() {
 
       </div>
 
-      <div className="w-90 m-4 d-flex justify-content-center">
+      {/* <div className="w-90 m-4 d-flex justify-content-center">
         <Card className={styles.cardMin} variant="outlined" >
           <CardContent>
             <Typography color="secondary" variant="h4" component="h2">
@@ -65,13 +65,13 @@ export default function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Link href="/subneteo1">
+            <Link href="/subneteo2">
               <Button size="medium" variant="outlined" color="secondary">Ir a la pagina</Button>
             </Link>
           </CardActions>
         </Card>
 
-      </div>
+      </div> */}
 
       <div className="w-90 m-4 d-flex justify-content-center">
         <Card className={styles.cardMin} variant="outlined" >

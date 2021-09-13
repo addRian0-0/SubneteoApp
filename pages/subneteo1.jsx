@@ -3,17 +3,21 @@ import { useState } from 'react';
 import { calcularRedes } from "./logic/subneteo";
 import Appbar from "../components/appbar";
 import Typography from '@material-ui/core/Typography';
-import styles from '../styles/Home.module.css';
-import Image from 'next/image';
 import { Button } from '@material-ui/core';
 
 export default function Home() {
 
     const [redes, setRedes] = useState(0);
-    const [oct1, setOct1] = useState(0);
     const [clase, setClase] = useState('');
     const [rangoRed, setRangoRed] = useState(0);
     const [numHosts, setnumHosts] = useState(0);
+    const [redesRes, setRedesR] = useState(0);
+
+    //Octatetos de entrada IP original
+    const [oct1, setOct1] = useState(0);
+    const [oct2, setOct2] = useState(0);
+    const [oct3, setOct3] = useState(0);
+    const [oct4, setOct4] = useState(0);
 
     //Octatetos de bits
     const [octb1, setOctb1] = useState('11111111');
@@ -27,9 +31,13 @@ export default function Home() {
     const [octd3, setOctd3] = useState('255')
     const [octd4, setOctd4] = useState('255')
 
+    const [rangosM, setRangosM] = useState([]);
+
     const sacarRedes = () => {
+
         event.preventDefault();
-        const { wclase, n, binText, bitTotales, salto, hosts } = calcularRedes(redes, oct1);
+        const { wclase, n, binText, bitTotales, salto, hosts, redesL } = calcularRedes(redes, oct1);
+        setRedesR(redesL);
         setClase(wclase);
         setRangoRed(salto);
         setnumHosts(hosts);
@@ -66,6 +74,48 @@ export default function Home() {
                 setOctd4(txtBit);
                 break;
         }
+
+        //SacarRangos
+        sacarRangos(redesL);
+
+    }
+
+    const sacarRangos = (rango) => {
+        //Reinicia los rangos
+        setRangosM([]);
+        let i = 0;
+        let array = [];
+
+        //Variables de redes IP 10.0.0.0 - 10.255.255.255
+        let redDesde;
+        let redHasta = ``;
+        let numDesde = 0;
+        let numHasta = 0;
+
+        while (i <= rango - 1) {
+            i++;
+            switch (clase) {
+                case "A":
+                    redDesde = `${oct1}.${numDesde}.${'0'}.${'0'}`;
+                    redHasta = `${oct1}.${numDesde + rangoRed -1 }.${'255'}.${'255'}`;
+                    break;
+                case "B":
+                    redDesde = `${oct1}.${oct2}.${numDesde}.${'0'}`;
+                    redHasta = `${oct1}.${oct2}.${numDesde + rangoRed - 1}.${'0'}`;
+                    break;
+                case "C":
+                    redDesde = `${oct1}.${oct2}.${oct3}.${numDesde}`;
+                    redHasta = `${oct1}.${oct2}.${oct3}.${numDesde + rangoRed - 1 }`;
+                    break;
+            }
+            array.push({
+                num: i,
+                desde: redDesde,
+                hasta: redHasta
+            });
+            numDesde += rangoRed;
+        }
+        setRangosM(array);
     }
 
     return (
@@ -80,7 +130,7 @@ export default function Home() {
 
             <form className="m-4 container" onSubmit={sacarRedes} >
 
-                <div className="row align-items-star">
+                <div className="row align-items-start">
                     <Typography color="primary" variant="h4" component="h2">
                         Direccion IP
                     </Typography>
@@ -89,15 +139,15 @@ export default function Home() {
                     </div>
                     .
                     <div className="col input-group input-group-sm mb-3">
-                        <input type="number" className="form-control" />
+                        <input type="number" value={oct2} onChange={e => setOct2(e.target.value)} className="form-control" />
                     </div>
                     .
                     <div className="col input-group input-group-sm mb-3">
-                        <input type="number" className="form-control" />
+                        <input type="number" value={oct3} onChange={e => setOct3(e.target.value)} className="form-control" />
                     </div>
                     .
                     <div className="col input-group input-group-sm mb-3">
-                        <input type="number" className="form-control" />
+                        <input type="number" value={oct4} onChange={e => setOct4(e.target.value)} className="form-control" />
                     </div>
                 </div>
                 <div className="row align-items-start">
@@ -121,7 +171,7 @@ export default function Home() {
                 <Typography color="primary" variant="h4" component="h2">
                     Numero de hosts por subred: {numHosts}
                 </Typography>
-                <br/>
+                <br />
                 <Typography color="primary" variant="h4" component="h2">
                     Mascara binario
                 </Typography>
@@ -143,7 +193,7 @@ export default function Home() {
                         </tr>
                     </tbody>
                 </table>
-                <br/>
+                <br />
                 <Typography color="primary" variant="h4" component="h2">
                     Mascara decimal
                 </Typography>
@@ -167,6 +217,39 @@ export default function Home() {
                 </table>
             </div>
 
+            <div className="m-5">
+                <Typography color="primary" variant="h4" component="h2">
+                    Numero de redes: {redesRes}
+                </Typography>
+                <table className="table table-hover" >
+                    <thead className="table-primary">
+                        <tr>
+                            <th>Numero de Red</th>
+                            <th>Desde...</th>
+                            <th>Hasta...</th>
+                        </tr>
+                    </thead>
+                    <tbody className={tableStyle} >
+                        {
+                            ! rangosM ? "" : rangosM.map(rango => {
+                                return(
+                                    <tr key={rango.num}>
+                                        <th> {rango.num} </th>
+                                        <th> {rango.desde} </th>
+                                        <th> {rango.hasta} </th>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>                
+            </div>
+
         </div >
     )
+}
+
+const tableStyle = {
+    maxHeight: '150px',
+    overflowY: 'auto'
 }
