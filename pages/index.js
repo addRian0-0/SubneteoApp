@@ -14,18 +14,11 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function Home() {
 
-  const [redes, setRedes] = useState(0);
-
-  const sacarRedes = () => {
-    event.preventDefault();
-    calcularRedes(redes);
-  }
-
   return (
     <div>
       <Head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" />
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
         <title>Programa de subneteo</title>
       </Head>
 
@@ -52,26 +45,6 @@ export default function Home() {
         </Card>
 
       </div>
-
-      {/* <div className="w-90 m-4 d-flex justify-content-center">
-        <Card className={styles.cardMin} variant="outlined" >
-          <CardContent>
-            <Typography color="secondary" variant="h4" component="h2">
-              ¿Cuantas hosts requieres?
-            </Typography>
-            <Typography variant="body2" variant="p" >
-              Solo deberas introducir el numero de hosts que requieres por subred.
-              Obtendras el tipo de clase de red, el numero de hosts por subred, la mascara en binario y en decimal.
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Link href="/subneteo2">
-              <Button size="medium" variant="outlined" color="secondary">Ir a la pagina</Button>
-            </Link>
-          </CardActions>
-        </Card>
-
-      </div> */}
 
       <div className="w-90 m-4 d-flex justify-content-center">
         <Card className={styles.cardMin} variant="outlined" >
