@@ -12,13 +12,13 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 export default function Home() {
 
   return (
     <div>
       <Head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
         <title>Programa de subneteo</title>
       </Head>
 
@@ -32,7 +32,7 @@ export default function Home() {
             <Typography color="secondary" variant="h4" component="h2">
               ¿Cuantas redes requieres?
             </Typography>
-            <Typography variant="body2" variant="p">
+            <Typography variant="body2" variant="body">
               Para este subneteo se require la direccion IP y el numero de redes solicitadas.
               Obtendras el tipo de clase de red, el numero de hosts por subred, la mascara en binario y en decimal.
             </Typography>
@@ -52,10 +52,10 @@ export default function Home() {
             <Typography color="secondary" variant="h4" component="h2">
               Repositorio de Git
             </Typography>
-            <Typography variant="body2" variant="p" >
+            <Typography variant="body2" >
               Repositorio en Git abierto 
             </Typography>
-            <Typography color="secondary" variant="body2" variant="p" >
+            <Typography color="secondary" variant="body2">
               - by addRian0-0
             </Typography>
           </CardContent>
