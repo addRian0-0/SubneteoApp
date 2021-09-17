@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import { calcularRedes } from "./logic/subneteo";
+import { calcularRedes } from "../logic/subneteo";
 import Appbar from "../components/appbar";
 import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';

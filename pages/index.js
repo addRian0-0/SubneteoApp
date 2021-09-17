@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { calcularRedes } from "./logic/subneteo";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
