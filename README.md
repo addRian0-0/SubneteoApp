@@ -11,6 +11,8 @@ Esta es una aplicacion web en el que tu podras ingresar una direccion IP y las r
 - Numero de hosts por subred
 - Toda la secuencia de la mascara decimal definida por el rango
 
+#### Puedes ver la aplicacion desplegada y en funcionamiento **[aqui](https://subneteo-app.vercel.app/)**.
+
 ----
 
 ## Construida con 
@@ -30,10 +32,10 @@ Esta es una aplicacion web en el que tu podras ingresar una direccion IP y las r
 
 ## Proceso de instalacion en modo dev
 
-    > Clonar este repositorio
-    > cd SubneteoApp
-    > npm install
-    > npm run dev
+    git clone https://github.com/addRian0-0/SubneteoApp.git
+    cd SubneteoApp
+    npm install
+    npm run dev
 
 Este ultimo comando iniciara un servidor en modo desarrollo en el puerto 3000.
 
