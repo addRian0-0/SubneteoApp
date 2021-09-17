@@ -32,7 +32,7 @@ export default function Home() {
             <Typography color="secondary" variant="h4" component="h2">
               ¿Cuantas redes requieres?
             </Typography>
-            <Typography variant="body2" variant="body">
+            <Typography variant="body2">
               Para este subneteo se require la direccion IP y el numero de redes solicitadas.
               Obtendras el tipo de clase de red, el numero de hosts por subred, la mascara en binario y en decimal.
             </Typography>
